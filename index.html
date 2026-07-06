@@ -1,0 +1,62 @@
+<!DOCTYPE html>
+<html lang="vi">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Tải ứng dụng Pantio</title>
+  <style>
+    body {
+      font-family: -apple-system, Roboto, Arial, sans-serif;
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      justify-content: center;
+      height: 100vh;
+      margin: 0;
+      background: #111;
+      color: #fff;
+      text-align: center;
+      padding: 20px;
+      box-sizing: border-box;
+    }
+    .spinner {
+      width: 36px;
+      height: 36px;
+      border: 4px solid #444;
+      border-top: 4px solid #fff;
+      border-radius: 50%;
+      animation: spin 0.8s linear infinite;
+      margin-bottom: 16px;
+    }
+    @keyframes spin { to { transform: rotate(360deg); } }
+    a {
+      color: #4da3ff;
+      text-decoration: none;
+      margin-top: 12px;
+      display: inline-block;
+    }
+  </style>
+</head>
+<body>
+  <div class="spinner"></div>
+  <p>Đang chuyển đến trang tải ứng dụng Pantio...</p>
+  <a id="manualLink" href="#">Nếu không tự chuyển, bấm vào đây</a>
+
+  <script>
+    const IOS_URL = "https://apps.apple.com/vn/app/pantio/id1539383015?l=vi";
+    const ANDROID_URL = "https://play.google.com/store/apps/details?id=vn.suplo.pantio";
+
+    const ua = navigator.userAgent || navigator.vendor || window.opera;
+    let targetUrl = ANDROID_URL; // mặc định
+
+    if (/iPad|iPhone|iPod/.test(ua) && !window.MSStream) {
+      targetUrl = IOS_URL;
+    } else if (/android/i.test(ua)) {
+      targetUrl = ANDROID_URL;
+    }
+
+    document.getElementById("manualLink").href = targetUrl;
+    window.location.href = targetUrl;
+  </script>
+</body>
+</html>
